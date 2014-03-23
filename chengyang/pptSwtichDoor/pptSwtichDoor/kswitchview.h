@@ -53,8 +53,11 @@ private:
 	float   m_fCurImageHeight;
 	float   m_fRotateAngle;
 	float	m_fAlpha;
+	float   m_fTransformTime;		//用于记录在切换幻灯片时已经切换了多长时间
 	const float  m_fTimeInterval;
-	const float  m_fImageMeetScale;	//两个Image在矩形的一定比例出相遇
+	const float  m_fImageMeetScale;	//两个Image在矩形的该比例出相遇
+	float	m_fPreImage_Total_ScaleValue;
+	float   m_fPreImage_One_ScaleValue;
 };
 
 #endif // KSWITCHVIEW_H

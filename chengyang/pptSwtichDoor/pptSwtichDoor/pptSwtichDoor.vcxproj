@@ -143,6 +143,8 @@
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_kmainwindow.h" />
     <ClInclude Include="klanternslide.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
     <CustomBuild Include="klistwidgetitem.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

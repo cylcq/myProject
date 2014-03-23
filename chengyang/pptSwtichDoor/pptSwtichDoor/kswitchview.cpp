@@ -20,9 +20,12 @@ KSwitchView::KSwitchView(QWidget *parent)
 	, m_fCurImageWidth(0)
 	, m_fCurImageHeight(0)
 	, m_fRotateAngle(0)
-	, m_fTimeInterval(10)
+	, m_fTimeInterval(20)
 	, m_fAlpha(255)
+	, m_fTransformTime(0)
 	, m_fImageMeetScale(0.666)
+	, m_fPreImage_Total_ScaleValue(0)
+	, m_fPreImage_One_ScaleValue(0)
 {
 	QPalette palette;
 	palette.setBrush(this->backgroundRole(),QBrush(QColor(176, 196, 222)));
@@ -53,30 +56,30 @@ void KSwitchView::paintEvent(QPaintEvent *event)
 
 	if (m_timeDuration->isActive())
 	{
-		static float transformTime = 0;
-		/*float showCurImageTime = m_fSwitchImageDuration * 1000 * 0.06;
-		if (transformTime - showCurImageTime > 0 && transformTime - showCurImageTime < 200)
+		
+		/*float showCurImageTime = m_fSwitchImageDuration * 1000 * 0.03;
+		if (m_fTransformTime - showCurImageTime > 0 && m_fTransformTime - showCurImageTime < 200)
 		{
 		m_fAlpha -= 5;
 		}*/
-		if (transformTime < (m_fSwitchImageDuration * 1000))
+		
+		if (m_fTransformTime < (m_fSwitchImageDuration * 1000))
 		{
-			transformTime += m_fTimeInterval;
+			m_fTransformTime += m_fTimeInterval;
 			drawCurImageEffect(painter, m_imageCurPPT);
 
-			if (transformTime < (m_fSwitchImageDuration * 1000 * m_fImageMeetScale))
+			if (m_fTransformTime < (m_fSwitchImageDuration * 1000 * m_fImageMeetScale))
 			{
 				drawPreImageEffect(painter, m_imagePrePPT);
 			}
 			else
 			{
-				float duration = m_fSwitchImageDuration - transformTime / 1000;
+				float duration = m_fSwitchImageDuration - m_fTransformTime / 1000;
 				calTimeOutOffset(1, duration, m_rectImageArea.width(), m_rectImageArea.height());
 			}
 		}
 		else
 		{
-			transformTime =0;
 			stopSwitch();
 		}
 	}
@@ -91,46 +94,43 @@ void KSwitchView::drawPreImageEffect(QPainter &painter, QImage &preImage)
 	QPointF widgetCenter = m_rectImageArea.center();
 	float halfRectWidth = m_rectImageArea.width() / 2;
 	float halfRectHeight = m_rectImageArea.height() / 2;
-
 	m_fAlpha -= m_fAlphaDecrease;
 	m_fRotateAngle += m_fIncreasedAngle;
+	m_fPreImage_Total_ScaleValue += m_fPreImage_One_ScaleValue;
 
-	QPointF rotatePoint(widgetCenter.x() - halfRectWidth, widgetCenter.y());
-	painter.save();
-	QRect leftRect(preImage.rect().x(), preImage.rect().y(),
-		halfRectWidth, m_rectImageArea.height());
+	//左边的门
+	QImage leftImage = preImage;
+	QRect leftRect(leftImage.rect().x() + (m_fPreImage_Total_ScaleValue), leftImage.rect().y() + m_fPreImage_Total_ScaleValue / 2,
+		halfRectWidth - m_fPreImage_Total_ScaleValue, m_rectImageArea.height() - m_fPreImage_Total_ScaleValue);
 
-	QImage leftImage =  preImage.copy(leftRect);
-	leftRect = QRect(m_rectImageArea.x(), m_rectImageArea.y(), 
-		halfRectWidth, m_rectImageArea.height());
+	leftImage.scaledToHeight( m_rectImageArea.height() + m_fPreImage_Total_ScaleValue);
 
+	leftImage =  leftImage.copy(leftRect);
 	setTransparent(leftImage, m_fAlpha);
 	QTransform leftTransform;
-	leftTransform.translate(rotatePoint.x(), rotatePoint.y());
 	leftTransform.rotate(-m_fRotateAngle, Qt::YAxis);
-	leftTransform.translate(-rotatePoint.x(), -rotatePoint.y());
-	painter.setWorldTransform(leftTransform);
+	leftImage.transformed(leftTransform);
+
+	leftRect = QRect(m_rectImageArea.x(), m_rectImageArea.y(), 
+		halfRectWidth - m_fPreImage_Total_ScaleValue, m_rectImageArea.height());
 	painter.drawImage(leftRect,leftImage);
-	painter.restore();
 
-	painter.save();
-	QRect rightRect(preImage.rect().x() + halfRectWidth, preImage.rect().y() ,
-		halfRectWidth, m_rectImageArea.height());
+	//右边的门
+	QImage rightImage = preImage;
+	QRect rightRect(halfRectWidth, rightImage.rect().y() + m_fPreImage_Total_ScaleValue / 2,
+		halfRectWidth - m_fPreImage_Total_ScaleValue, m_rectImageArea.height() - m_fPreImage_Total_ScaleValue);
 
-	QImage rightImage =  preImage.copy(rightRect);
-	rightRect = QRect(m_rectImageArea.x() + halfRectWidth, m_rectImageArea.y(), 
-		halfRectWidth, m_rectImageArea.height());
+	rightImage.scaledToHeight( m_rectImageArea.height() + m_fPreImage_Total_ScaleValue);
 
+	rightImage =  rightImage.copy(rightRect);
 	setTransparent(rightImage, m_fAlpha);
-	rotatePoint = QPointF(widgetCenter.x() + halfRectWidth, widgetCenter.y());
-
 	QTransform rightTransform;
-	rightTransform.translate(rotatePoint.x(), rotatePoint.y());
 	rightTransform.rotate(m_fRotateAngle, Qt::YAxis);
-	rightTransform.translate(-rotatePoint.x(), -rotatePoint.y());
-	painter.setWorldTransform(rightTransform);
+	rightImage.transformed(rightTransform);
+
+	rightRect = QRect(m_rectImageArea.x() + halfRectWidth + m_fPreImage_Total_ScaleValue, 
+		m_rectImageArea.y(), halfRectWidth - m_fPreImage_Total_ScaleValue, m_rectImageArea.height());
 	painter.drawImage(rightRect,rightImage);
-	painter.restore();
 }
 
 void KSwitchView::drawCurImageEffect(QPainter &painter, QImage &curImage)
@@ -192,6 +192,7 @@ void KSwitchView::switchPPT(SWITCHSTYLE style)
 		m_preImageColor = preItem->getLanterSlideData()->getColor();
 		m_imagePrePPT = preItem->getLanterSlideData()->getImage();
 	}
+	//bool i =m_imagePrePPT.load("E:\\gitProject\\wps_dev_wpp\\homework\\chengyang\\pptSwtichDoor\\pptSwtichDoor\\test.png");
 
 	m_imageCurPPT = m_imageCurPPT.scaled(m_rectImageArea.width() * 0.25,
 		m_rectImageArea.height() * 0.4);
@@ -201,7 +202,9 @@ void KSwitchView::switchPPT(SWITCHSTYLE style)
 	m_imagePrePPT.fill(m_preImageColor);
 	m_imageCurPPT.fill(m_curImageColor);
 
-	m_fSwitchImageDuration = curItem->getLanterSlideData()->getDuration();
+	
+
+	m_fSwitchImageDuration = curItem->getLanterSlideData()->getDuration() * m_fImageMeetScale;
 
 	float width = m_rectImageArea.width() * m_fImageMeetScale;
 	float height = m_rectImageArea.height() * m_fImageMeetScale;
@@ -216,6 +219,8 @@ void KSwitchView::stopSwitch()
 	m_fCurImageHeight = m_rectImageArea.height() * 0.3;
 	m_fRotateAngle = 0;
 	m_fAlpha = 255;
+	m_fTransformTime =0;
+	m_fPreImage_Total_ScaleValue = 0;
 	m_timeDuration->stop();
 	update(this->rect());
 }
@@ -236,6 +241,9 @@ void KSwitchView::calTimeOutOffset(const float &imageMeetScale, const float &dur
 
 	m_fAlphaDecrease = 255 / (duration * 1000 * 
 		imageMeetScale) * m_fTimeInterval;
+
+	m_fPreImage_One_ScaleValue = ((m_rectImageArea.width() / 2) /
+		(duration * 1000 * imageMeetScale)) * m_fTimeInterval;
 }
 
 void KSwitchView::setTransparent(QImage &image, int alpha)
@@ -243,16 +251,17 @@ void KSwitchView::setTransparent(QImage &image, int alpha)
 	QColor color = m_preImageColor;
 	color.setAlpha(alpha);
 	image.fill(color);
+
 	/*QImage mage = image;
 	QRgb rgb;
 	for(int i = 0;i < mage.rect().width(); i++)
 	{
-		for (int j = 0;j < mage.rect().height(); j++)
-		{
-			QRgb rgb1 = mage.pixel(i,j);
-			rgb = qRgba(qRed(rgb1),qGreen(rgb1),qBlue(rgb1),alpha);
-			mage.setPixel(i,j,rgb);
-		}
+	for (int j = 0;j < mage.rect().height(); j++)
+	{
+	QRgb rgb1 = mage.pixel(i,j);
+	rgb = qRgba(qRed(rgb1),qGreen(rgb1),qBlue(rgb1),alpha);
+	immageage.setPixel(i,j,rgb);
+	}
 	}
 	image = mage;*/
 }
