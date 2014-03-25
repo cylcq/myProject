@@ -17,13 +17,17 @@ public:
 
 	void setSliderListWidget(KSliderpptList *&slide);
 	void stopSwitch();
-	void drawCurImageEffect(QPainter &painter, QImage &curImage);
-	void drawPreImageEffect(QPainter &painter, QImage &preImage);
+	void drawCurImageEffect(QPainter &painter, const QImage &curImage, const float& frame);
+	void drawPreImageEffect(QPainter &painter,const  QImage &preImage, const float& frame);
 
 	void setTransparent(QImage &image, int alpha);
 
-	void calTimeOutOffset(const float &imageMeetScale,const float &duration, 
-		const float &width, const float &height);
+	/*void calTimeOutOffset(const float &imageMeetScale,const float &duration, 
+		const float &width, const float &height);*/
+
+	void calTimeOutOffSet(float& switchAreaWidth, float& switchAreaHeight, float frame);
+
+	void switchSlideDoor(QPainter& painer, const QImage& preImage, const QImage& curImage, float frame);
 
 signals:
 	void amendDuration(double);
@@ -31,6 +35,7 @@ signals:
 public slots:
 	void switchPPTColor(QListWidgetItem * current, QListWidgetItem * previous);
 	void switchPPT(SWITCHSTYLE style);
+	void updateSlide();
 
 protected:
 	void paintEvent(QPaintEvent *);
@@ -45,19 +50,9 @@ private:
 	QRectF  m_rectImageArea;
 	QTimer* m_timeDuration;
 	float   m_fSwitchImageDuration;
-	float   m_fIncreasedWidth;
-	float   m_fIncreasedHeight;
-	float   m_fIncreasedAngle;
-	float	m_fAlphaDecrease;
-	float	m_fCurImageWidth; 
-	float   m_fCurImageHeight;
-	float   m_fRotateAngle;
-	float	m_fAlpha;
 	float   m_fTransformTime;		//用于记录在切换幻灯片时已经切换了多长时间
 	const float  m_fTimeInterval;
 	const float  m_fImageMeetScale;	//两个Image在矩形的该比例出相遇
-	float	m_fPreImage_Total_ScaleValue;
-	float   m_fPreImage_One_ScaleValue;
 };
 
 #endif // KSWITCHVIEW_H
