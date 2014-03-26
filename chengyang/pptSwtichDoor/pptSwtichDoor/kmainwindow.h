@@ -1,5 +1,5 @@
-#ifndef KMAINWINDOW_H
-#define KMAINWINDOW_H
+#ifndef __PPTSWITCHDOOR_KMAINWINDOW_H__
+#define __PPTSWITCHDOOR_KMAINWINDOW_H__
 
 #include <QtGui/QMainWindow>
 
@@ -20,4 +20,4 @@ private:
 	QToolBar *m_pToolBar;
 };
 
-#endif // KMAINWINDOW_H
+#endif // __PPTSWITCHDOOR_KMAINWINDOW_H__

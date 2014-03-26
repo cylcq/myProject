@@ -1,5 +1,5 @@
-#ifndef KCENTRALWIDGET_H
-#define KCENTRALWIDGET_H
+#ifndef __PPTSWITCHDOOR_KCENTRALWIDGET_H__
+#define __PPTSWITCHDOOR_KCENTRALWIDGET_H__
 
 #include "kswitchstyle.h"
 #include <QWidget>
@@ -41,4 +41,4 @@ private:
 	
 };
 
-#endif // KCENTRALWIDGET_H
+#endif // __PPTSWITCHDOOR_KCENTRALWIDGET_H__

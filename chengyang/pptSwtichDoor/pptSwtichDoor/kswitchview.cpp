@@ -104,60 +104,29 @@ void KSwitchView::drawPreImageEffect(QPainter &painter,const QImage &preImage, c
 	QImage leftImage = preImage;
 	QRect leftRect( m_fPreImageScaleWidth, leftImage.rect().y() + m_fPreImageScaleHeight / 2,
 		halfRectWidth - m_fPreImageScaleWidth, preImage.rect().height() - m_fPreImageScaleHeight);
-	qDebug()<<preImage.rect();
-	leftImage = leftImage.scaled(leftImage.width(), leftImage.height() + m_fPreImageScaleHeight);
-	qDebug()<<"left"<<leftImage.rect();
-	leftImage = leftImage.copy(leftRect);
 
+	leftImage = leftImage.scaled(leftImage.width(), leftImage.height() + m_fPreImageScaleHeight);
 	QTransform leftTransform;
 	leftTransform.rotate(-m_fIncreasedAngle, Qt::YAxis);
 	leftImage.transformed(leftTransform);
 
-	leftRect = QRect(preImage.rect().x(), preImage.rect().y(), 
+	QRect tLeftRect = QRect(preImage.rect().x(), preImage.rect().y(), 
 		halfRectWidth - m_fPreImageScaleWidth, preImage.height());
-	
-	painter.drawImage(leftRect, leftImage);
+	painter.drawImage(tLeftRect, leftImage, leftRect);
 
-	/*QRect leftRect(preImage.rect().x() + m_fPreImageScaleWidth, preImage.rect().y() + m_fPreImageScaleHeight / 2,
-		halfRectWidth - m_fPreImageScaleWidth, preImage.height());
-	painter.drawImage(QPoint(preImage.rect().x(), preImage.rect().y()), leftImage, leftRect);*/
-	
+	//右边的门
 	QImage rightImage = preImage;
-	
 	QRect rightRect(halfRectWidth, rightImage.rect().y() + m_fPreImageScaleHeight / 2,
 		halfRectWidth - m_fPreImageScaleWidth, preImage.height() - m_fPreImageScaleHeight);
 
 	rightImage = rightImage.scaled(rightImage.width(), rightImage.height() + m_fPreImageScaleHeight);
-	rightImage = rightImage.copy(rightRect);
 	QTransform rightTransform;
 	rightTransform.rotate(m_fIncreasedAngle, Qt::YAxis);
 	rightImage.transformed(rightTransform);
 
-	rightRect = QRect(halfRectWidth + m_fPreImageScaleWidth, preImage.rect().y(), 
+	QRect tRightRect = QRect(halfRectWidth + m_fPreImageScaleWidth, preImage.rect().y(), 
 		halfRectWidth - m_fPreImageScaleWidth, preImage.rect().height());
-	painter.drawImage(rightRect, rightImage);
-
-	//右边的门
-	//QImage rightImage = preImage.scaled( preImage.width() + m_fPreImageScaleWidth, preImage.height() + m_fPreImageScaleHeight);
-	//QRect rightRect(rightImage.rect().center().x(),rightImage.rect().y() - m_fPreImageScaleHeight / 2,
-	//	halfRectWidth - m_fPreImageScaleWidth, preImage.height() - m_fPreImageScaleHeight);
-
-	//rightImage = rightImage.copy(rightRect);
-	//QTransform rightTransform;
-	//rightTransform.rotate(m_fIncreasedAngle, Qt::YAxis);
-	//rightImage.transformed(rightTransform);
-
-	//rightRect = QRect(halfRectWidth + m_fPreImageScaleWidth, preImage.rect().y(), 
-	//	halfRectWidth - m_fPreImageScaleWidth, preImage.rect().height());
-	//painter.drawImage(rightRect, leftImage);
-
-
-	/*QRect rightRect(preImage.rect().center().x(),preImage.rect().y() + m_fPreImageScaleHeight / 2,
-		halfRectWidth - m_fPreImageScaleWidth, preImage.height());
-	QPoint point(preImage.rect().x() + halfRectWidth + m_fPreImageScaleWidth, preImage.rect().y());
-
-	painter.drawImage(point, rightImage, rightRect);
-	*/
+	painter.drawImage(tRightRect, rightImage, rightRect);
 
 	painter.restore();
 	
@@ -229,16 +198,14 @@ void KSwitchView::switchPPT(SWITCHSTYLE style)
 		m_preImageColor = preItem->getLanterSlideData()->getColor();
 		m_imagePrePPT = preItem->getLanterSlideData()->getImage();
 	}
-
-	//test
-	bool i =m_imagePrePPT.load("E:\\MyTest\\pptSwtichDoor\\pptSwtichDoor\\test.png");
+	//bool i =m_imagePrePPT.load("E:\\MyTest\\pptSwtichDoor\\pptSwtichDoor\\test.png");
 
 	m_imageCurPPT = m_imageCurPPT.scaled(m_rectImageArea.width(),
 		m_rectImageArea.height());
 
 	m_imagePrePPT = m_imagePrePPT.scaled(m_rectImageArea.width(), m_rectImageArea.height());
 
-	//m_imagePrePPT.fill(m_preImageColor);
+	m_imagePrePPT.fill(m_preImageColor);
 	m_imageCurPPT.fill(m_curImageColor);
 
 	

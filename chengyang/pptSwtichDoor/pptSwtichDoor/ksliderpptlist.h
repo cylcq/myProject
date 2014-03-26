@@ -1,5 +1,5 @@
-#ifndef KSLIDERPPTLIST_H
-#define KSLIDERPPTLIST_H
+#ifndef __PPTSWITCHDOOR_KSLIDERPPTLIST_H__
+#define __PPTSWITCHDOOR_KSLIDERPPTLIST_H__
 
 #include <QListWidget>
 
@@ -33,4 +33,4 @@ private:
 	QAction*			m_pActionChangColor;
 };
 
-#endif // KSLIDERPPTLIST_H
+#endif // __PPTSWITCHDOOR_KSLIDERPPTLIST_H__

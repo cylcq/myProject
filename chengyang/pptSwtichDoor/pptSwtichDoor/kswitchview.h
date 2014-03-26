@@ -1,5 +1,5 @@
-#ifndef KSWITCHVIEW_H
-#define KSWITCHVIEW_H
+#ifndef __PPTSWITCHDOOR_KSWITCHVIEW_H__
+#define __PPTSWITCHDOOR_KSWITCHVIEW_H__
 
 #include "kswitchstyle.h"
 #include <QWidget>
@@ -55,4 +55,4 @@ private:
 	const float  m_fImageMeetScale;	//两个Image在矩形的该比例出相遇
 };
 
-#endif // KSWITCHVIEW_H
+#endif // __PPTSWITCHDOOR_KSWITCHVIEW_H__

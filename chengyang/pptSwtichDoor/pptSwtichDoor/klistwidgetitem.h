@@ -1,5 +1,5 @@
-#ifndef KLISTWIDGETITEM_H
-#define KLISTWIDGETITEM_H
+#ifndef __PPTSWITCHDOOR_KLISTWIDGETITEM_H__
+#define __PPTSWITCHDOOR_KLISTWIDGETITEM_H__
 
 #include <QListWidgetItem>
 
@@ -19,4 +19,4 @@ private:
 	KLanternSlide*	m_pLanternSlideData;
 };
 
-#endif // KLISTWIDGETITEM_H
+#endif // __PPTSWITCHDOOR_KLISTWIDGETITEM_H__
