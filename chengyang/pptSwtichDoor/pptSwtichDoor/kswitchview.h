@@ -19,14 +19,6 @@ public:
 	void stopSwitch();
 	void drawCurImageEffect(QPainter &painter, const QImage &curImage, const float& frame);
 	void drawPreImageEffect(QPainter &painter,const  QImage &preImage, const float& frame);
-
-	void setTransparent(QImage &image, int alpha);
-
-	/*void calTimeOutOffset(const float &imageMeetScale,const float &duration, 
-		const float &width, const float &height);*/
-
-	void calTimeOutOffSet(float& switchAreaWidth, float& switchAreaHeight, float frame);
-
 	void switchSlideDoor(QPainter& painer, const QImage& preImage, const QImage& curImage, float frame);
 
 signals:
@@ -35,7 +27,6 @@ signals:
 public slots:
 	void switchPPTColor(QListWidgetItem * current, QListWidgetItem * previous);
 	void switchPPT(SWITCHSTYLE style);
-	void updateSlide();
 
 protected:
 	void paintEvent(QPaintEvent *);
