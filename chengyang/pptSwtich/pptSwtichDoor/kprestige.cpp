@@ -9,7 +9,7 @@ KPrestige::KPrestige()
 	: m_fWidth(0)
 	, m_fHeight(0)
 {
-	m_Gravity = QVector3D(0, -20, 0);
+	m_Gravity = QVector3D(0, -3000, 0);
 }
 
 KPrestige::~KPrestige()
@@ -66,13 +66,13 @@ void KPrestige::setFixPosition()
 		float offset = 0.42;
 		for (int j = 0; j < 5; ++j)
 		{
-			m_Cloth.getMassPoint(i, horizontalSpringCount * offset).setPullPointXYZ(false,true);
+			m_Cloth.getMassPoint(i, horizontalSpringCount * offset).setPullPointXYZ(false,true,false);
 			offset += 0.01;
 		}
 	}
 	
-	//m_Cloth.getMassPoint(verticalSpringCount * 0.65, horizontalSpringCount * 0.3).setPullPointXYZ(true);
-	//m_Cloth.getMassPoint(verticalSpringCount * 0.65, horizontalSpringCount * 0.6).setPullPointXYZ(true);
+// 	m_Cloth.getMassPoint(verticalSpringCount * 0.5, horizontalSpringCount * 0.5).setPullPointXYZ(true);
+// 	m_Cloth.getMassPoint(verticalSpringCount * 0.5, horizontalSpringCount * 0.6).setPullPointXYZ(true);
 	//m_Cloth.getMassPoint(verticalSpringCount - 1, horizontalSpringCount * 0.5).setPullPointZ();
 }
 void KPrestige::switchSlide(QPainter& painter, const QImage& preImage, const QImage& curImage, float frame)
@@ -107,15 +107,15 @@ void KPrestige::drawCurImage(const QImage& curImage)
 }
 void KPrestige::drawPreImage(const QImage& preImage, float frame)
 {
-	if (frame > 0.1 && frame < 0.7)
+	if (frame > 0.1 && frame < 0.9)
 	{
 		int horizontalSpringCount = m_Cloth.getHorizontalSpringCount();
 		int verticalSpringCount = m_Cloth.getVerticalSpringCount();
-		m_Cloth.getMassPoint(verticalSpringCount * 0.45, horizontalSpringCount * 0.5 *(1 - frame)).setPullPointXYZ(false, true, true);
-		m_Cloth.getMassPoint(verticalSpringCount * 0.45, horizontalSpringCount * 0.45).setPullPointXYZ(false, true, true);
+		m_Cloth.getMassPoint(verticalSpringCount * 0.5, horizontalSpringCount * 0.5 *(1 - frame)).setPullPointXYZ(false, true, true);
+		m_Cloth.getMassPoint(verticalSpringCount * 0.5, horizontalSpringCount * 0.5).setPullPointXYZ(false, true, true);
 		if (1 - frame > 0)
 		{
-			m_Cloth.getMassPoint(verticalSpringCount * 0.5, horizontalSpringCount * 0.5 * (1 - frame) - 1).setPullPointXYZ(false, false, false);
+			//m_Cloth.getMassPoint(verticalSpringCount * 0.4, horizontalSpringCount * 0.5 * (1 - frame) + 1).setPullPointXYZ(false, false, false);
 		}
 	}
 	if (frame < 0.1)

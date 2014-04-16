@@ -66,10 +66,10 @@ void KMassPoint::timeStep(float height, float frame)
 			m_point3OffsetByGravity * m_fTimeStep +
 			(1.0 - damping) * velocityVector);
 
-		m_point3Pos.setY(m_pointY + height* 1.5 * frame);
+		m_point3Pos.setY(m_pointY + height* 1.6 * frame);
 		if (m_bPullZ && frame > 0.1)
 		{
-			m_point3Pos.setZ(m_pointZ + 5 * (frame - 0.1));
+			m_point3Pos.setZ(m_pointZ + 10 * (frame - 0.1));
 		}
 	
 	}

@@ -4,7 +4,7 @@ KLanternSlide::KLanternSlide()
 	: m_fWidth(0)
 	, m_fHeight(0)
 	, m_color(Qt::red)
-	, m_fDuration(10)
+	, m_fDuration(2)
 	, m_switchStyle(SWITCHSTYLE_NONE)
 {
 
