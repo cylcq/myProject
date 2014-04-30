@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{b39813c6-63b3-4249-96d1-09b6b8efca73}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{805938d6-a74f-4fbf-8db1-a896993a6bc1}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Header Files\door">
+      <UniqueIdentifier>{bbcdaf9c-2fbd-4e04-9fa4-49bb229801f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\prestige">
+      <UniqueIdentifier>{3beccde5-3f95-47c0-983e-3bc7b6018d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\door">
+      <UniqueIdentifier>{86040e46-6f7c-4290-a431-4f8937287c7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\prestige">
+      <UniqueIdentifier>{a9d3dd3d-f6cf-4374-9ee6-6cbe5f467a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\curtain">
+      <UniqueIdentifier>{a86ad145-f5f0-41de-9f45-1d0737818336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\curtain">
+      <UniqueIdentifier>{90d53d0a-e80b-4211-9115-b2abe17f0411}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\baseCloth">
+      <UniqueIdentifier>{917e83fc-ff9c-46fb-8b29-a8d2de4aea8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\baseCloth">
+      <UniqueIdentifier>{56c4a5e9-e78e-4249-97ad-db14e02d6595}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kmainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_kmainwindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_kmainwindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_kmainwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ksliderpptlist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ksliderpptlist.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ksliderpptlist.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="kswitchview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_kswitchview.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_kswitchview.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="kcentralwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_kcentralwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_kcentralwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="klanternslide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="klistwidgetitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kbaseswitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="door\kdoor.cpp">
+      <Filter>Source Files\door</Filter>
+    </ClCompile>
+    <ClCompile Include="prestige\kprestige.cpp">
+      <Filter>Source Files\prestige</Filter>
+    </ClCompile>
+    <ClCompile Include="baseCloth\kcloth.cpp">
+      <Filter>Source Files\baseCloth</Filter>
+    </ClCompile>
+    <ClCompile Include="baseCloth\kmasspoint.cpp">
+      <Filter>Source Files\baseCloth</Filter>
+    </ClCompile>
+    <ClCompile Include="baseCloth\kspringmodel.cpp">
+      <Filter>Source Files\baseCloth</Filter>
+    </ClCompile>
+    <ClCompile Include="prestige\kprestigemasspoint.cpp">
+      <Filter>Source Files\prestige</Filter>
+    </ClCompile>
+    <ClCompile Include="curtain\kcurtain.cpp">
+      <Filter>Source Files\curtain</Filter>
+    </ClCompile>
+    <ClCompile Include="curtain\kcurtainmasspoint.cpp">
+      <Filter>Source Files\curtain</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="kmainwindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="kmainwindow.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="kmainwindow.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ksliderpptlist.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="kswitchview.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="kcentralwidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="klistwidgetitem.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_kmainwindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="klanternslide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kswitchstyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="kbaseswitch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="door\kdoor.h">
+      <Filter>Header Files\door</Filter>
+    </ClInclude>
+    <ClInclude Include="prestige\kprestige.h">
+      <Filter>Header Files\prestige</Filter>
+    </ClInclude>
+    <ClInclude Include="baseCloth\kcloth.h">
+      <Filter>Header Files\baseCloth</Filter>
+    </ClInclude>
+    <ClInclude Include="baseCloth\kmasspoint.h">
+      <Filter>Header Files\baseCloth</Filter>
+    </ClInclude>
+    <ClInclude Include="baseCloth\kspringmodel.h">
+      <Filter>Header Files\baseCloth</Filter>
+    </ClInclude>
+    <ClInclude Include="prestige\kprestigemasspoint.h">
+      <Filter>Header Files\prestige</Filter>
+    </ClInclude>
+    <ClInclude Include="curtain\kcurtain.h">
+      <Filter>Header Files\curtain</Filter>
+    </ClInclude>
+    <ClInclude Include="curtain\kcurtainmasspoint.h">
+      <Filter>Header Files\curtain</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
